@@ -6,6 +6,7 @@ import TaskList from '../../ui/TaskList';
 import {User} from '../../types/User';
 import {DailyEntry} from '../../types/DailyEntry';
 import {getUserTasksAndTransform} from '../../lib/utils';
+import SpecialTask from '../../ui/SpecialTask';
 
 type MainScreenProps = {
   user: User;
@@ -14,7 +15,7 @@ type MainScreenProps = {
 
 const MainScreen = (props: MainScreenProps) => {
   const {user, dailyEntry} = props;
-  console.log({user, dailyEntry});
+
   const transformedUserTasks = getUserTasksAndTransform({
     userId: user.id,
     dailyEntryId: dailyEntry.id,
@@ -24,6 +25,7 @@ const MainScreen = (props: MainScreenProps) => {
     <View>
       <Text>Main Screen</Text>
       <TaskList tasks={transformedUserTasks} />
+      <SpecialTask />
     </View>
   );
 };
