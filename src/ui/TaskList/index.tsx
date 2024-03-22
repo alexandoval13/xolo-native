@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 
 import TaskContainer from './TaskContainer';
 import {TaskListItem} from '../../types/Task';
@@ -13,11 +13,13 @@ const TaskList = (props: TaskListProps) => {
   return (
     <View>
       <Text>Task List</Text>
-      <View>
-        {tasks.map(item => (
-          <TaskContainer key={`task-${item.id}`} item={item} />
-        ))}
-      </View>
+      <FlatList
+        data={tasks}
+        renderItem={({item}) => {
+          return <TaskContainer key={`task-${item.id}`} item={item} />;
+        }}
+        keyExtractor={item => item.id}
+      />
     </View>
   );
 };

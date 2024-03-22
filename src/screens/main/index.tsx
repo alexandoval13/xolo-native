@@ -16,16 +16,17 @@ type MainScreenProps = {
 const MainScreen = (props: MainScreenProps) => {
   const {user, dailyEntry} = props;
 
-  const transformedUserTasks = getUserTasksAndTransform({
-    userId: user.id,
-    dailyEntryId: dailyEntry.id,
-  });
+  const {transformedDailyTasks, transformedSpecialTasks} =
+    getUserTasksAndTransform({
+      userId: user.id,
+      dailyEntryId: dailyEntry.id,
+    });
 
   return (
     <View>
       <Text>Main Screen</Text>
-      <TaskList tasks={transformedUserTasks} />
-      <SpecialTask />
+      <TaskList tasks={transformedDailyTasks} />
+      <SpecialTask specialTasks={transformedSpecialTasks} />
     </View>
   );
 };
