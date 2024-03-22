@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Modal,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -20,7 +19,8 @@ const styles = StyleSheet.create({
   },
   container: {
     height: 360,
-    padding: 24,
+    paddingTop: 48,
+    paddingBottom: 24,
     borderTopStartRadius: 4,
     borderTopEndRadius: 4,
     backgroundColor: 'pink',
@@ -60,7 +60,7 @@ const PopUpModal = ({
                 />
               </View>
             )}
-            <ScrollView>{children}</ScrollView>
+            {children}
           </View>
         </TouchableWithoutFeedback>
       </TouchableOpacity>

@@ -26,6 +26,26 @@ const largeButtonStyles = (props: StylesProps) => {
   });
 };
 
+const smallButtonStyles = (props: StylesProps) => {
+  const {isDisabled, backgroundColor} = props;
+
+  return StyleSheet.create({
+    container: {
+      borderRadius: 4,
+      padding: 8,
+      alignItems: 'center',
+      alignSelf: 'center',
+      backgroundColor: isDisabled ? 'gray' : backgroundColor || '',
+      opacity: isDisabled ? 0.5 : 1,
+    },
+    text: {
+      color: 'white',
+      fontWeight: '500',
+      fontSize: 16,
+    },
+  });
+};
+
 const iconButtonStyles = (props: StylesProps) => {
   const {isDisabled, backgroundColor} = props;
 
@@ -47,7 +67,7 @@ const iconButtonStyles = (props: StylesProps) => {
   });
 };
 
-type CustomButtonTypes = 'large' | 'icon';
+type CustomButtonTypes = 'large' | 'icon' | 'small';
 
 type CustomButtonProps = {
   type: CustomButtonTypes;
@@ -67,6 +87,8 @@ const CustomButton = (props: CustomButtonProps) => {
         return largeButtonStyles({isDisabled, backgroundColor});
       case 'icon':
         return iconButtonStyles({isDisabled, backgroundColor});
+      case 'small':
+        return smallButtonStyles({isDisabled, backgroundColor});
     }
   };
 
@@ -75,6 +97,12 @@ const CustomButton = (props: CustomButtonProps) => {
   return (
     <TouchableOpacity onPress={handlePress} disabled={disabled}>
       {type === 'large' && (
+        <View style={classes.container}>
+          {title && <Text style={classes.text}>{title}</Text>}
+          {icon && icon}
+        </View>
+      )}
+      {type === 'small' && (
         <View style={classes.container}>
           {title && <Text style={classes.text}>{title}</Text>}
           {icon && icon}
